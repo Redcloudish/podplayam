@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.trios2024ammb.podplay.databinding.SearchItemBinding
 import com.trios2024ammb.podplay.viewmodel.SearchViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.withContext
 
 class PodcastListAdapter(
     private var podcastSummaryViewList: List<SearchViewModel.PodcastSummaryViewData>?,
@@ -49,12 +47,9 @@ class PodcastListAdapter(
         parent: ViewGroup,
         viewType: Int
     ): PodcastListAdapter.ViewHolder {
-        return ViewHolder(
-            SearchItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            ),
-            podcastListAdapterListener
-        )
+        return ViewHolder(SearchItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false),
+            podcastListAdapterListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -74,4 +69,3 @@ class PodcastListAdapter(
         return podcastSummaryViewList?.size ?: 0
     }
 }
-
