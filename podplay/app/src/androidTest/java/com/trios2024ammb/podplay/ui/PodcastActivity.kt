@@ -8,13 +8,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.trios2024ammb.podplay.R
@@ -37,13 +34,10 @@ class PodcastActivity : AppCompatActivity(),
 
     private lateinit var searchMenuItem: MenuItem
 
-
-    private val searchViewModel by viewModels<SearchViewModel>()
-
     private val podcastViewModel by viewModels<PodcastViewModel>()
 
+    private val searchViewModel by viewModels<SearchViewModel>()
     private lateinit var podcastListAdapter: PodcastListAdapter
-
 
     private lateinit var databinding: ActivityPodcastBinding
 
@@ -67,8 +61,9 @@ class PodcastActivity : AppCompatActivity(),
         setupToolbar()
         setupViewModels()
         updateControls()
+        createSubscription()
+        handleIntent(intent)
         addBackStackListener()
-
 
     }
 
@@ -77,8 +72,8 @@ class PodcastActivity : AppCompatActivity(),
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_search, menu)
         // 2
-        val searchMenuItem = menu.findItem(R.id.search_item)
-        val searchView = searchMenuItem.actionView as SearchView
+        searchMenuItem = menu.findItem(R.id.search_item)
+        val searchView = searchMenuItem?.actionView as SearchView
         // 3
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         // 4
@@ -88,11 +83,9 @@ class PodcastActivity : AppCompatActivity(),
             databinding.podcastRecyclerView.visibility = View.INVISIBLE
         }
 
-
         if (databinding.podcastRecyclerView.visibility == View.INVISIBLE) {
             searchMenuItem.isVisible = false
         }
-
 
         return true
     }
@@ -132,7 +125,6 @@ class PodcastActivity : AppCompatActivity(),
         searchViewModel.iTunesRepo = ItunesRepo(service)
         podcastViewModel.podcastRepo = PodcastRepo(RssFeedService.instance)
 
-
     }
 
     private fun updateControls() {
@@ -168,7 +160,6 @@ class PodcastActivity : AppCompatActivity(),
     }
 
 
-
     private fun showProgressBar() {
         databinding.progressBar.visibility = View.VISIBLE
     }
@@ -202,10 +193,8 @@ class PodcastActivity : AppCompatActivity(),
             R.id.podcastDetailsContainer,
             podcastDetailsFragment, TAG_DETAILS_FRAGMENT)
             .addToBackStack("DetailsFragment").commit()
-
-
         // 3
-        if databinding.podcastRecyclerView.visibility = View.INVISIBLE
+        databinding.podcastRecyclerView.visibility = View.INVISIBLE
         // 4
         searchMenuItem.isVisible = false
     }
@@ -227,4 +216,3 @@ class PodcastActivity : AppCompatActivity(),
     }
 
 }
-

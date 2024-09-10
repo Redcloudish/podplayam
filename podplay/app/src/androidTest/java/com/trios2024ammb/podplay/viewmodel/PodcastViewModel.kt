@@ -51,7 +51,6 @@ class PodcastViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-
     private fun podcastToPodcastView(podcast: Podcast): PodcastViewData {
         return PodcastViewData(
             false,
@@ -63,7 +62,6 @@ class PodcastViewModel(application: Application) : AndroidViewModel(application)
         )
     }
 
-    // 1
     fun getPodcast(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
         podcastSummaryViewData.feedUrl?.let { url ->
             viewModelScope.launch {
@@ -79,8 +77,6 @@ class PodcastViewModel(application: Application) : AndroidViewModel(application)
             _podcastLiveData.value = null
         }
     }
-
-
 
 
 
