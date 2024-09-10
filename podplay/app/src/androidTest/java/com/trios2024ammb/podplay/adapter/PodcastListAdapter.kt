@@ -23,6 +23,8 @@ class PodcastListAdapter(
     inner class ViewHolder(
         databinding: SearchItemBinding,
         private val podcastListAdapterListener: PodcastListAdapterListener
+
+
     ) : RecyclerView.ViewHolder(databinding.root) {
         var podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData? = null
         val nameTextView: TextView = databinding.podcastNameTextView
