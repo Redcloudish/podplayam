@@ -17,7 +17,8 @@ fragment = "1.8.3"
 fragment-ktx = "1.8.3"
 okhttp = "3.4.1"
 logging-interceptor = "3.4.1"
-media = "1.2.1"
+media = "1.7.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

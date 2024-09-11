@@ -61,7 +61,7 @@ class PodplayMediaService : MediaBrowserServiceCompat(),
         setSessionToken(mediaSession.sessionToken)
         // 3
         val callback = PodplayMediaCallback(this, mediaSession)
-        callBack.listener = this
+        callback.listener = this
         mediaSession.setCallback(callback)
 
     }
@@ -101,7 +101,7 @@ class PodplayMediaService : MediaBrowserServiceCompat(),
         openActivityIntent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         return PendingIntent.getActivity(
             this@PodplayMediaService, 0, openActivityIntent,
-            PendingIntent.FLAG_CANCEL_CURRENT)
+            PendingIntent.FLAG_IMMUTABLE)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
