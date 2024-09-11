@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+    implementation(libs.media)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
